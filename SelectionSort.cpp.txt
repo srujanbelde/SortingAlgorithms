@@ -1,0 +1,80 @@
+=>in this we have two parts, they are sorted part and unsorted part
+	sorted part is left of array and unsorted part is right of array
+=>intially we have left part as null and right as full array
+now we select smallest number from unsored part and put it at first place
+	->now sorted part is first element and unsorted part is from second to last element
+	->now we select the smallest element in between 2nd and last element and put it at 2nd place
+	->now we select the smallest element in between 3rd and last element and put it at 3rd place
+	->similarlly we continue this process till we reach the end of array
+
+SELECTION SORT = SELECTING THE SMALLEST ELEMET AND PUTTING IT TO THE LEFT! :)
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#define MAX 7
+
+int intArray[MAX] = {4,6,3,2,1,9,7};
+
+void printline(int count){
+   int i;
+	
+   for(i = 0;i <count-1;i++){
+      printf("=");
+   }
+	
+   printf("=\n");
+}
+
+void display(){
+   int i;
+   printf("[");
+	
+   // navigate through all items 
+   for(i = 0;i<MAX;i++){
+      printf("%d ", intArray[i]);
+   }
+	
+   printf("]\n");
+}
+
+void selectionSort(){
+
+   int indexMin,i,j; 
+	
+   // loop through all numbers 
+   for(i = 0; i < MAX-1; i++){ 
+	
+      // set current element as minimum 
+      indexMin = i;
+		
+      // check the element to be minimum 
+      for(j = i+1;j<MAX;j++){
+         if(intArray[j] < intArray[indexMin]){
+            indexMin = j;
+         }
+      }
+
+      if(indexMin != i){
+         printf("Items swapped: [ %d, %d ]\n" , intArray[i], intArray[indexMin]); 
+			
+         // swap the numbers 
+         int temp = intArray[indexMin];
+         intArray[indexMin] = intArray[i];
+         intArray[i] = temp;
+      }          
+
+      printf("Iteration %d#:",(i+1));
+      display();
+   }
+}  
+
+main(){
+   printf("Input Array: ");
+   display();
+   printline(50);
+   selectionSort();
+   printf("Output Array: ");
+   display();
+   printline(50);
+}

@@ -1,0 +1,91 @@
+=>similar to picking up off cards
+	first i take a card ,as only one card in hand it is sorted
+	now i take another card and if it more than the first card i put it to the right else left 
+	now i pick the 3rd card and insert it at the right position by comparing it with the cards in hand
+	this continues untill i pick up all the cards from the table
+
+	similarly 
+	i take the fisrt element of the array,it is already sorted
+	now i take 2nd element is the array and compare it with first element and put them in sorted order
+	then i take the third element and compare with first 2 elements and put them in sorted order
+	next i take 4th element and compare it with first 3 cards and put them in sorted order
+	this is continued untill i reach the last element in the array
+
+==>working----we take each element starting from 2nd position (array[1]) and compare with all the elements in its left and we put it at the crct position.! :)
+
+INSERTION SORT=INSERTING THE ELEMENT AT THE RIGHT PLACE
+
+
+
+
+include <stdio.h>
+#include <stdbool.h>
+#define MAX 7
+
+int intArray[MAX] = {4,6,3,2,1,9,7};
+
+void printline(int count){
+   int i;
+	
+   for(i = 0;i <count-1;i++){
+      printf("=");
+   }
+	
+   printf("=\n");
+}
+
+void display(){
+   int i;
+   printf("[");
+	
+   // navigate through all items 
+   for(i = 0;i<MAX;i++){
+      printf("%d ",intArray[i]);
+   }
+	
+   printf("]\n");
+}
+
+void insertionSort(){
+
+   int valueToInsert;
+   int holePosition;
+   int i;
+  
+   // loop through all numbers 
+   for(i = 1; i < MAX; i++){ 
+	
+      // select a value to be inserted. 
+      valueToInsert = intArray[i];
+		
+      // select the hole position where number is to be inserted 
+      holePosition = i;
+		
+      // check if previous no. is larger than value to be inserted 
+      while (holePosition > 0 && intArray[holePosition-1] > valueToInsert){
+         intArray[holePosition] = intArray[holePosition-1];
+         holePosition--;
+         printf(" item moved : %d\n" , intArray[holePosition]);
+      }
+
+      if(holePosition != i){
+         printf(" item inserted : %d, at position : %d\n" , valueToInsert,holePosition);		  
+         // insert the number at hole position 
+         intArray[holePosition] = valueToInsert;   
+      }
+
+      printf("Iteration %d#:",i);
+      display();
+		
+   }  
+}
+
+main(){
+   printf("Input Array: ");
+   display();
+   printline(50);
+   insertionSort();
+   printf("Output Array: ");
+   display();
+   printline(50);
+}
